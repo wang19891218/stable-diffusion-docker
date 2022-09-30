@@ -14,7 +14,7 @@ clean() {
 
 dev() {
     mkdir -p output
-    docker run --rm --gpus=all --entrypoint=sh \
+    docker run --rm --gpus='device=0' --entrypoint=sh \
         -v huggingface:/home/huggingface/.cache/huggingface \
         -v "$PWD"/output:/home/huggingface/output \
         -it "$CWD"
@@ -23,7 +23,7 @@ dev() {
 run() {
     shift
     mkdir -p output
-    docker run --rm --gpus=all \
+    docker run --rm --gpus='device=0' \
         -v huggingface:/home/huggingface/.cache/huggingface \
         -v "$PWD"/output:/home/huggingface/output \
         "$CWD" "$@"
